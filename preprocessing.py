@@ -7,10 +7,9 @@ lines=file.readlines()
 rows=len(lines)
 
 dict={}
-#key:uid  value:[max_f,min_f,all_f,max_c,min_c,all_c,max_l,min_l,all_l]
-
+#key:uid  value:[max_f,min_f,all_f,max_c,min_c,all_c,max_l,min_l,all_l,num_weibo]
 for line in lines:
-    datamat=[0,0,0,0,0,0,0,0,0,1]
+    datamat = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
     line=line.strip().split('\t')
     if line[0] in dict:
         if dict[line[0]][0]<int(line[3]):
@@ -31,6 +30,15 @@ for line in lines:
         dict[line[0]][9]+=1
     else:
         dict[line[0]]=datamat
+        dict[line[0]][0] = int(line[3])
+        dict[line[0]][1] = int(line[3])
+        dict[line[0]][2] = int(line[3])
+        dict[line[0]][3] = int(line[4])
+        dict[line[0]][4] = int(line[4])
+        dict[line[0]][5] = int(line[4])
+        dict[line[0]][6] = int(line[5])
+        dict[line[0]][7] = int(line[5])
+        dict[line[0]][8] = int(line[5])
 
 #print(dict['731df6bc96df275923b455a8e2927da7'])
 user_file=open('uer_total.txt','w',encoding="utf-8")
